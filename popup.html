@@ -1,0 +1,43 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Social Thumbnail Viewer</title>
+    <style>
+        body {
+            width: 300px;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            border-radius: 16px;
+            box-sizing: border-box;
+            margin:0;
+            overflow: hidden;
+            border: none;
+            padding:20px;
+        }
+        #image-preview {
+            margin: 0;
+            padding: 0;
+            display: none;
+            text-align: center;
+            border-radius: 16px;
+        }
+        #image-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+        }
+        #no-image {
+            color: #d32f2f;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="no-image">No social thumbnail found</div>
+    <div id="image-preview"></div>
+    <script src="popup.js"></script>
+</body>
+</html>

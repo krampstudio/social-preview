@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Social Thumbnail Viewer",
+    "version": "1.0",
+    "description": "Displays social media thumbnails from og:image meta tags",
+    "icons": {
+        "48": "icon48.png",
+        "96": "icon96.png"
+    },
+    "permissions": ["activeTab", "scripting"],
+    "action": {
+        
+        "default_popup": "popup.html",
+        "default_icon": {
+            "48": "icon48.png",
+            "96": "icon96.png"
+        }
+    }
+}
