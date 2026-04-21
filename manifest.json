@@ -5,14 +5,16 @@
     "description": "Displays social media thumbnails from og:image meta tags",
     "icons": {
         "48": "icon48.png",
-        "96": "icon96.png"
+        "96": "icon96.png",
+        "128": "icon128.png"
     },
     "permissions": ["activeTab", "scripting"],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
             "48": "icon48.png",
-            "96": "icon96.png"
+            "96": "icon96.png",
+            "128": "icon128.png"
         }
     }
 }

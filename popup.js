@@ -10,18 +10,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 return meta ? meta.content : null;
             }
         }, results => {
-            if (!results[0].result) return;
+            if (chrome.runtime.lastError || !results || !results[0] || !results[0].result) return;
             const imageUrl = new URL(results[0].result, tabs[0].url).toString();
             const previewDiv = document.getElementById('image-preview');
             const noImageDiv = document.getElementById('no-image');
             const urlDiv = document.getElementById('url');
-            // Create preview image
+
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = "Social Thumbnail Preview";
             previewDiv.appendChild(img);
             noImageDiv.style.display = 'none';
-            urlDiv.innerHTML = `<a href="${imageUrl}" target="_blank">${imageUrl}</a>`;
+
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.target = '_blank';
+            link.textContent = imageUrl;
+            urlDiv.appendChild(link);
+
             previewDiv.style.display = 'block';
         });
     });
