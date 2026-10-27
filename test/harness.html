@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Social Preview harness</title>
+    <link rel="stylesheet" href="../popup.css">
+    <!--
+        Renders the real popup without installing the extension:
+        serve the repo root (python3 -m http.server) and open
+        /test/harness.html?fixture=large|summary|bare&tab=x|facebook|linkedin|slack|discord|tags
+    -->
+    <script>
+        const FIXTURES = {
+            large: {
+                title: 'Hugging Face – The AI community building the future.',
+                tags: {
+                    'og:title': 'Hugging Face – The AI community building the future.',
+                    'og:description': 'We’re on a journey to advance and democratize artificial intelligence through open source and open science.',
+                    'og:image': 'https://huggingface.co/front/thumbnails/v2-2.png',
+                    'og:url': 'https://huggingface.co/',
+                    'og:site_name': 'Hugging Face',
+                    'twitter:card': 'summary_large_image',
+                    'twitter:site': '@huggingface',
+                    'theme-color': '#ffd21e'
+                }
+            },
+            summary: {
+                title: 'krampstudio/social-preview',
+                tags: {
+                    'og:title': 'krampstudio/social-preview: Preview social cards from your toolbar',
+                    'og:description': 'A browser extension that shows how a page will look when shared on X, Facebook, LinkedIn, Slack and Discord.',
+                    'og:image': '../icon128.png',
+                    'twitter:card': 'summary'
+                }
+            },
+            bare: {
+                title: 'A page with no social tags at all',
+                tags: {description: 'Only a plain meta description is available on this page.'}
+            }
+        };
+        const params = new URLSearchParams(location.search);
+        const fixture = FIXTURES[params.get('fixture')] || FIXTURES.large;
+        document.title = fixture.title;
+        for (const [key, value] of Object.entries(fixture.tags)) {
+            const meta = document.createElement('meta');
+            meta.setAttribute(key.startsWith('og:') ? 'property' : 'name', key);
+            meta.content = value;
+            document.head.append(meta);
+        }
+        if (params.get('tab')) localStorage.setItem('social-preview:tab', params.get('tab'));
+
+        // The popup reads this page itself in place of the active tab
+        globalThis.chrome = {
+            tabs: {query: async () => [{id: 1, url: location.href}]},
+            scripting: {executeScript: async ({func}) => [{result: func()}]}
+        };
+    </script>
+</head>
+<body>
+    <header id="page">
+        <img id="page-icon" alt="" referrerpolicy="no-referrer">
+        <div>
+            <div id="page-domain"></div>
+            <div id="page-url"></div>
+        </div>
+    </header>
+    <nav id="tabs" role="tablist"></nav>
+    <main id="panel" role="tabpanel">
+        <p class="status">Reading page metadata…</p>
+    </main>
+    <script src="../meta.js"></script>
+    <script src="../platforms.js"></script>
+    <script src="../popup.js"></script>
+</body>
+</html>
