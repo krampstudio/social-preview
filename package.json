@@ -1,0 +1,16 @@
+{
+    "name": "social-preview",
+    "private": true,
+    "description": "Development tooling only, the extension itself has no dependencies or build step",
+    "scripts": {
+        "test": "node --test test/meta.test.js",
+        "lint": "./release.sh && web-ext lint --source-dir build/firefox",
+        "e2e:setup": "puppeteer browsers install chrome && puppeteer browsers install firefox && playwright install webkit",
+        "e2e": "./release.sh && node e2e/chrome.mjs && node e2e/firefox.mjs && node e2e/webkit.mjs"
+    },
+    "devDependencies": {
+        "playwright": "^1.64.1",
+        "puppeteer": "^24.43.1",
+        "web-ext": "^10.8.0"
+    }
+}

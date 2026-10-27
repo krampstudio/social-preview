@@ -76,9 +76,20 @@ Requires `jq` and `zip`.
 ## Development
 
 ```sh
-node --test test/                                   # unit tests for metadata resolution
-npx web-ext lint --source-dir build/firefox         # Firefox manifest/code lint (after ./release.sh)
+npm install
+npm test             # unit tests for metadata resolution
+npm run lint         # Firefox manifest and code lint (web-ext)
+npm run e2e:setup    # once: downloads Chrome for Testing, Firefox and WebKit
+npm run e2e          # end-to-end checks in all three engines
 ```
+
+`npm run e2e` loads the built extension into real browsers and opens two live pages:
+
+- **Chrome:** installs `build/chrome`, clicks the toolbar action and checks every tab of the real popup
+- **Firefox:** installs a copy of `build/firefox` (with host permissions, since automation can't click the toolbar action in Firefox) and runs the popup against each page through the real `browser.*` APIs
+- **WebKit (Safari's engine):** runs the extraction on each page and renders every tab through `test/harness.html`. Safari's own toolbar popup can't be automated, so test that one by hand (see [Safari](#safari-macos-requires-xcode))
+
+Screenshots go to `build/e2e/`. To use a browser other than the one Puppeteer downloads, set `PUPPETEER_EXECUTABLE_PATH`.
 
 To iterate on the card styles without reloading the extension, open `test/harness.html` in a browser. It loads the real popup files with a stubbed extension API and sample metadata:
 
@@ -100,6 +111,8 @@ social-preview/
 ├── platforms.js    # One renderer per platform
 ├── icon*.png       # Icons generated from icon.svg
 ├── test/           # Unit tests and visual harness
+├── e2e/            # End-to-end checks in Chrome, Firefox and WebKit
+├── package.json    # Development tooling only
 └── release.sh      # Packages Chrome, Firefox and Safari builds
 ```
 
