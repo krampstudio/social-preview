@@ -139,15 +139,6 @@ a {
     font-size: 14px;
 }
 
-.img-error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e9ecef;
-    color: #6c757d;
-    font: 12px var(--system);
-}
-
 /* Shared card helpers */
 
 .fb-desc, .x-overlay {
@@ -579,4 +570,15 @@ a {
 
 .tag-table td {
     word-break: break-word;
+}
+
+/* Placeholder for images that fail to load, last so it wins over card image rules */
+
+.img-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
+    color: #6c757d;
+    font: 12px var(--system);
 }
