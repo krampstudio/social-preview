@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="icon.svg" alt="Social Preview logo" width="128" height="128">
+</p>
+
 # Social Preview
 
 A browser extension that shows how the current page will look when you share its URL on **X, Facebook, LinkedIn, Slack and Discord**, right from the toolbar. Works in **Chrome, Firefox and Safari**.
