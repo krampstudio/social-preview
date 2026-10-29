@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f7fb"/>
+      <stop offset="1" stop-color="#e3e7f3"/>
+    </linearGradient>
+    <clipPath id="img"><path d="M34 44a7 7 0 0 1 7-7h56a7 7 0 0 1 7 7v26H34z"/></clipPath>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <g transform="translate(64 64) scale(1.2) translate(-58.5 -57)">
+    <rect x="18" y="25" width="70" height="62" rx="7" fill="#8b5cf6" transform="rotate(-12 53 56)"/>
+    <rect x="26" y="31" width="70" height="62" rx="7" fill="#22c55e" transform="rotate(-5 61 62)"/>
+    <rect x="34" y="37" width="70" height="64" rx="7" fill="#fff" stroke="#d5dbec" stroke-width="2"/>
+    <g clip-path="url(#img)">
+      <rect x="34" y="37" width="70" height="33" fill="#3b82f6"/>
+      <circle cx="88" cy="49" r="5.5" fill="#ffd166"/>
+      <path d="M34 70l19-17 12 10 9-7 30 14z" fill="#1e3a8a" opacity=".8"/>
+    </g>
+    <rect x="41" y="77" width="44" height="7" rx="3.5" fill="#1f2a5c"/>
+    <rect x="41" y="88" width="28" height="5" rx="2.5" fill="#a7b3d9"/>
+  </g>
+</svg>
